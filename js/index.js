@@ -22,14 +22,17 @@ function calculateAll() {
   // code in the following two lines is added just for testing purposes.
   // it runs when only iteration 1 is completed. at later point, it can be removed.
   const mutiProduct = document.getElementsByClassName('product');
-
+  const total = document.querySelector('#total-value span');
+  //const total = document.getElementById('total-value');
   let soma = 0;
   for (i = 0; i < mutiProduct.length; i++) {
     soma += updateSubtotal(mutiProduct[i]);
   }
 
   console.log(soma);
-  return soma;
+  total.innerText = soma;
+
+  //return soma;
 
   // end of test
 
