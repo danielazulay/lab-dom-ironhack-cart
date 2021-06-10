@@ -3,7 +3,7 @@
 function updateSubtotal(product) {
   console.log('Calculating subtotal, yey!');
   const price = product.querySelector('.price span');
-  const quant = product.querySelector('input');
+  const quant = product.querySelector('.quantity input');
   //const quant2 = product.getElementsByClassName('product2');
   const subtotal = product.querySelector('.subtotal span');
 
@@ -47,8 +47,14 @@ function calculateAll() {
 
 function removeProduct(event) {
   const target = event.currentTarget;
-  console.log('The target in remove is:', target);
-  //... your code goes here
+
+  //1 forma
+  //  target.parentNode.parentNode.innerHTML = '';
+
+  //2 forma
+  const currentRow = target.parentNode.parentNode;
+  const tableElement = currentRow.parentNode;
+  tableElement.removeChild(currentRow);
 }
 
 // ITERATION 5
@@ -59,7 +65,17 @@ function createProduct() {
 
 window.addEventListener('load', () => {
   const calculatePricesBtn = document.getElementById('calculate');
+
+  //console.log(calculatePricesBtn);
   calculatePricesBtn.addEventListener('click', calculateAll);
 
   //... your code goes here
+
+  const removeBtn = document.getElementsByClassName('btn btn-remove');
+
+  //console.log(calculatePricesBtn);
+  //removeProduct leva o argumento que e p buttom
+  for (let buttom of removeBtn) {
+    buttom.addEventListener('click', removeProduct);
+  }
 });
